@@ -1,5 +1,6 @@
 #include "project/AutoregressiveModel.hpp"
 #include "project/LinearRegression.hpp"
+#include "project/vecPush.hpp"
 
 arma::mat AutoregressiveModel::laggedMatrix(arma::vec &x, int lag){
 
@@ -32,12 +33,6 @@ float AutoregressiveModel::pointPrediction(arma::mat &x) {
     arma::vec prediction = AutoregressiveModel::predict(x);
     float point_prediction = prediction(prediction.n_rows-1);
     return point_prediction;
-}
-
-void vec_push(arma::vec &v, float value) {
-    arma::vec av(1);
-    av.at(0) = value;
-    v.insert_rows(v.n_rows, av.row(0));
 }
 
 arma::vec AutoregressiveModel::forecast(int horizon){

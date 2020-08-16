@@ -4,9 +4,12 @@
 class ExponentialSmoothing {
 
     private:
-        arma::colvec ts, weigths;
+        float param_alpha;
+        arma::vec ts, weigths;
     public:
-        ExponentialSmoothing(arma::colvec &time_series);
-        fit(double alpha);
-        predict(int horizon)
-}
+        ExponentialSmoothing(arma::vec &time_series, float alpha);
+        void fit();
+        arma::vec forecast(int horizon);
+        arma::vec getWeigths() {return weigths;}
+
+};
