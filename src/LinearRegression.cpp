@@ -1,8 +1,9 @@
 #include "project/LinearRegression.hpp"
 #include <armadillo>
 
-LinearRegression::LinearRegression(arma::Mat<double> &x, 
-                     arma::Mat<double> &y){
+LinearRegression::LinearRegression(arma::mat &x,
+                                   arma::vec &y){
+
     X = x;
     Y = y;
 }
@@ -18,7 +19,7 @@ void LinearRegression::fit(bool fit_inter = true){
     }
 }
 
-arma::colvec LinearRegression::predict(arma::Mat<double> &X_pred){
+arma::colvec LinearRegression::predict(arma::mat &X_pred){
     if(fit_intercept) {        
         return arma::join_rows(
                 arma::ones(X_pred.n_rows, 1),

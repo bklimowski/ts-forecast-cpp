@@ -1,14 +1,17 @@
+#pragma once
 #include <armadillo>
 
-class LinearRegression {
-    private:
-        arma::Mat<double> X, Y;
-        arma::colvec coef;        
-        bool fit_intercept;
-    public:
-        LinearRegression(arma::Mat<double> &x, arma::Mat<double> &y);
-        void fit(bool fit_intercept);
-        arma::colvec predict(arma::Mat<double> &X_pred);
-        arma::colvec getCoef() {return coef;}
-        //~LinearRegression();
-}
+class LinearRegression
+{
+protected:
+    arma::mat X;
+    arma::vec Y, coef;
+    bool fit_intercept;
+
+public:
+    LinearRegression(arma::mat &x, arma::vec &y);
+    void fit(bool fit_intercept);
+    arma::vec predict(arma::mat &X_pred);
+    arma::vec getCoef() const { return coef; }
+    //~LinearRegression();
+};
